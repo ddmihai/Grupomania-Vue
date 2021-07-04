@@ -1,0 +1,41 @@
+@mixin flexBasic ($jc, $align) {
+    display: flex;
+    align-items: $align;
+    justify-content: $jc;
+    flex-wrap: wrap;
+}
+
+
+// dimentions
+@mixin minDim {
+    width: 100%;
+    min-height: 100vh;
+}
+
+@mixin fixedDim($w, $h) {
+    width: $w;
+    height: $h;
+}
+
+// TYPOGRAPHY
+@mixin typo($f-size, $color, $bold) {
+    text-decoration: none;
+    font-size: $f-size;
+    font-family: monospace;
+    color: $color;
+    font-weight: $bold;
+}
+
+// SETTED TYPO PROFILE
+@mixin setTypo {
+    @include typo(1.1em, grey, bold);
+    @include flexBasic (space-between, center);
+    padding: 5px;
+}
+
+
+// BACKGROUND
+@mixin background {
+    background-position: center;
+    background-size: cover;
+}

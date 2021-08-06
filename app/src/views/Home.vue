@@ -1,15 +1,30 @@
 <template>
   <section class="home">
     <article class="home__presentation">
-      <titles text="Wellcome to Grupomania" className="backgroundLightGray"></titles>
-      <h2>We are pleased to wellcome you to our organisation</h2>
-      <h3>Our benefits: </h3>
-      <ul>
-        <li><h3>Anual refresh training</h3></li>
-        <li><h3>Paid deducted pension </h3></li>
-        <li><h3>Work from home flexible</h3></li>
-        <li><h3>Unpaid holliday</h3></li>
-      </ul>
+      <home-baner></home-baner>
+
+      <!-- Div with containers slided over the home-banner -->
+      <aside class="boxes">
+         <basic-e>
+           <template v-slot:image><img src="../assets/images/customer.png" width="90" alt="customer icon"></template>
+           <template v-slot:text><p class="description">Customer Services</p></template>
+         </basic-e>
+
+          <basic-e>
+            <template v-slot:image><img src="../assets/images/quality.png" width="90" alt="customer icon"></template>
+            <template v-slot:text><p class="description">Continous Improvements</p></template>
+         </basic-e>
+
+          <basic-e>
+            <template v-slot:image><img src="../assets/images/communication.png" width="90" alt="customer icon"></template>
+            <template v-slot:text><p class="description">Communication Forum</p></template>
+         </basic-e>
+      </aside>
+
+      <!-- Roules section -->
+      <aside class="rules">
+        <app-rules></app-rules>
+      </aside>
     </article>
   </section>
 </template>
@@ -18,7 +33,7 @@
 // @ is an alias to /src
 
 export default {
- 
+
 }
 </script>
 
@@ -29,19 +44,20 @@ export default {
  
 .home {
   height: calc(100vh - 60px);
-  @include flexBasic(center, center);
-  
-;
-
-  &__presentation {
-    border: 2px solid $lightgray;
-    flex: 1 1 200px;
-    max-width: 800px;
-  }
 }
 
-h2, h3 {
-  padding: 10px;
+.boxes {
+  @include flexBasic (center, center);
+  flex-wrap: wrap;
+  margin-top: -50px;
+}
+
+.description {
+  font-size: 1.3em;
+}
+
+.rules {
+
 }
 
 </style>

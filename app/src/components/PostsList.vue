@@ -2,15 +2,15 @@
     <section>
         <titles text="Posts" className="backgroundLightGray"></titles>
         <aside>
-           <div class="parent" v-for="post in postsArray[0]" :key="post.post_ID">
+           <div class="parent" v-for="post in reversedArrayPosts[0]" :key="post.post_ID">
              <post-container
                 :postID             ="post.post_ID"
                 :title              ="post.post_title"
                 :postSubtitle       ="post.post_subtitle"
                 :postContext        ="post.post_content"
                 :author             ="post.emp_username"
+                :background         ="post.imagesLink"
              ></post-container>
-
            </div>
         </aside>
     </section>
@@ -23,7 +23,9 @@ export default {
 
     data() {
         return {
-            postsArray : []
+            postsArray : [],
+            reversedArrayPosts: [],
+            isModalVisible: false
         }
     },
 
@@ -31,15 +33,18 @@ export default {
         getPostsFunction() {
             getPosts(this.postsArray);
             this.$mount();
+        },
+
+        reverseArray() {
+            this.reversedArrayPosts = this.postsArray.reverse();
+            console.log(this.reversedArrayPosts);
         }
     },
 
     mounted() {
         this.getPostsFunction(this.postsArray);
-    },
+        this.reverseArray();
 
-    updated() {
-         this.getPostsFunction(this.postsArray);
     }
 
 }

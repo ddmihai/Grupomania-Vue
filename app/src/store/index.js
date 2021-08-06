@@ -24,6 +24,11 @@ const store = new Vuex.Store({
       state.array.flat();
     },
 
+    LOGOUT (state) {
+      state.user.pop();
+      console.log(state.user + 'This is the user');
+    },
+
     ADD_USER_TO_STORE (state, user) {
       state.user.pop();
       state.user.push(user);

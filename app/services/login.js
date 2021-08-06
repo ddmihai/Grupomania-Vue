@@ -16,6 +16,7 @@ export function login(username, password) {
             store.commit('ADD_USER_TO_STORE',   data.data.user);
             store.commit('ADD_TOKEN_TO_STORE',  data.data.token);
             window.location.href = 'http://localhost:8080/#/profile';
+            
          })
          .catch((error) => console.log(error))
 }

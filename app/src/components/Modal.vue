@@ -10,12 +10,15 @@
 
       <section class="modal-body">
         <slot name="body">
-            <input placeholder="Title" v-model="title" type="text" />
-            <input placeholder="Subtitle" v-model="subtitle" type="text" />
-            <input placeholder="Content" v-model="content" type="text" />
-        </slot>
+            <form method="POST" action="/create/post" @submit.prevent="createPost" enctype="multipart/form-data">
+                <input placeholder="Title" v-model="title" type="text" />
+                <input placeholder="Subtitle" v-model="subtitle" type="text" />
+                <input placeholder="Content" v-model="content" type="text" />
 
-        <button @click="createPost"> Proceed </button>
+                <input @change="onFileSelected" name="image" type="file" />
+                <button type="submit"> Proceed </button>
+            </form>
+        </slot>
        </section>
 
     </div>
@@ -23,14 +26,15 @@
 </template>
 
 <script>
-import { createPost } from '../../services/createPost.js';
+import { createPostNew } from '../../services/createPost.js';
   export default {
 
     data() {
         return {
             title:      '',
             subtitle:   '',
-            content:    ''
+            content:    '',
+            selectedFile: null
         }
     },      
 
@@ -41,10 +45,24 @@ import { createPost } from '../../services/createPost.js';
         this.$emit('close');
       },
 
+      onFileSelected(event) {
+        this.selectedFile = event.target.files[0];
+      },
+
       createPost() {
-          createPost(this.title, this.subtitle, this.content);
+          let formData = new FormData();
+          formData.append('image', this.selectedFile);
+          formData.append('title', this.title);
+          formData.append('subtitle', this.subtitle);
+          formData.append('content', this.content);
+          formData.append('emp_ID', this.$store.state.user[0].emp_ID);
+        console.log(formData)
+          createPostNew(formData);
+         // createPost(this.title, this.subtitle, this.content, this.selectedFile);
+
           this.close();
-      }
+      },
+
     },
   };
 </script>

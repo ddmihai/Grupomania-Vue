@@ -16,7 +16,5 @@ export default {
 
 main {
     @include fixedDim(100%, 100vh);
-    
-
 }
 </style>

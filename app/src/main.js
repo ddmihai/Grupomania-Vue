@@ -27,9 +27,13 @@ import PostContainer        from './components/PostContainer.vue'
 import Modal                from './components/Modal.vue';
 import CommentList          from './components/CommentList.vue';
 import DeleteComment        from './components/DeleteComment.vue';
+import BasicExample         from './components/BasicExample.vue';
+import Rules                from './components/Rules.vue';
+import UpdatePost                from './components/UpdatePost.vue';
 
 
 // components
+Vue.component('basic-e',            BasicExample);
 Vue.component('header-d',           HeaderDesktop);
 Vue.component('home-baner',         HomeBaner);
 Vue.component('header-m',           HeaderMobile);
@@ -47,6 +51,8 @@ Vue.component('post-container',     PostContainer);
 Vue.component('app-modal',          Modal);
 Vue.component('comm-list',          CommentList);
 Vue.component('delete-comm',        DeleteComment);
+Vue.component('app-rules',          Rules);
+Vue.component('post-update',          UpdatePost);
 
 
 

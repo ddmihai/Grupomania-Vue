@@ -10,6 +10,6 @@ import store from '../src/store/index'
 export function getPosts(array) {
     axios.get('http://localhost:3000/api/get/posts', { headers:  { Authorization: `Bearer ${store.state.token}` }})
         .then((data) => {
-            array.push(data.data);
+            array.unshift(data.data);
         })
 }
